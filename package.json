@@ -2,29 +2,44 @@
   "name": "storefront_backend",
   "version": "0.1.0",
   "description": "",
-  "main": "server.ts",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node src/server.ts",
+    "build": "npx tsc",
+    "start": "npm run build && node .",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "jasmine-ts",
-    "tsc": "tsc"
+    "jasmine": "jasmine-ts",
+    "tsc": "tsc",
+    "db-up": "db-migrate up",
+    "db-down": "db-migrate down",
+    "testdb": "db-migrate reset --env test && db-migrate up --env test",
+    "test": "npx tsc && npm run testdb && set NODE_ENV=test&& jasmine-ts"
   },
   "author": "Udacity",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "db-migrate": "^0.11.14",
+    "db-migrate-pg": "^1.3.0",
+    "dotenv": "^16.3.1",
     "express": "^4.17.1",
-    "body-parser": "^1.19.0",
-    "typescript": "^4.1.3",
+    "jsonwebtoken": "^9.0.1",
     "pg": "^8.5.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.9",
     "@types/jasmine": "^3.6.3",
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/pg": "^7.14.7",
+    "@types/supertest": "^2.0.14",
     "jasmine": "^3.6.4",
     "jasmine-spec-reporter": "^6.0.0",
     "jasmine-ts": "^0.3.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3",
     "ts-node": "^9.1.1",
-    "tsc-watch": "^4.2.9"
+    "tsc-watch": "^4.2.9",
+    "typescript": "^5.2.2"
   }
 }
