@@ -7,8 +7,11 @@ describe("Test Product Model", () => {
         name: "Product 1",
         price: 10000
     }
+    let productTestForAPI: Product;
 
-    beforeEach(async () => await productModel.create(productTest))
+    beforeEach(async () => {
+        productTestForAPI = await productModel.create(productTest);
+    })
 
     it("should return a new product", async () => {
         const result = await productModel.create(productTest);
@@ -22,14 +25,15 @@ describe("Test Product Model", () => {
     })
 
     it("should be return a product by productId", async () => {
-        const productId = productTest.id as number
+        const productId = productTestForAPI.id as number
         const result = await productModel.show(productId);
-        expect(result.name).toEqual(productTest.name);
-        expect(result.price).toEqual(productTest.price);
+        expect(result.name).toEqual(productTestForAPI.name);
+        expect(result.price).toEqual(productTestForAPI.price);
     })
 
     it("should delete a product by Id", async() => {
-        const result = await productModel.delete(1);
-        expect(result.id).toEqual(1);
+        const productId = productTestForAPI.id as number
+        const result = await productModel.delete(productId);
+        expect(result.id).toEqual(productId);
     })
 });

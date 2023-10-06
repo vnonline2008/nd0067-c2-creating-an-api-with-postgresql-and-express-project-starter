@@ -69,7 +69,8 @@ describe("End To End test", () => {
     })
 
     it ("API should response status 200 and order by userId", async() => {
-        const response = await mockServer.get(`/orders/${orderTest.userid}`);
+        const response = await mockServer.get(`/orders/${orderTest.userid}`)
+                                            .auth(token, {type: "bearer"});
         expect(response.statusCode).toBe(200);
     })
 

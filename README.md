@@ -32,6 +32,6 @@ This repo contains a basic Node and Express app to get you started in constructi
     POSTGRESS_DATABASE_TEST=postgres_test
     POSTGRESS_DATABASE=postgres
     PEPPER=demopepper
-    SALT=20
+    SALT=12
     TOKEN_SECRECT=secretKey
 ```
